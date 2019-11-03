@@ -329,3 +329,19 @@ function loop(arr, n) {
 
     return result + loop(arr.slice(1), arr[0]);
 }
+
+// Version two 
+// throws error when the object has more than one property
+function loop(arr, n) {
+    result = n || '[';
+
+    if (arr.length === 0) {
+        return n + ']';
+    } else if (typeof result === 'object') {
+        result = loop(Object.entries(result)) + ",";
+    } else if (n !== undefined) {
+        result = result + ",";
+    }
+
+    return result + loop(arr.slice(1), arr[0]);
+}
